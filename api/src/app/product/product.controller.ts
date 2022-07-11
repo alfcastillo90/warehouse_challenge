@@ -1,6 +1,9 @@
+import { IProduct } from './../schemas/product.schema';
+import { setPriceWithProfit } from './product.service';
 import { createProduct, getProducts, getProductById, updateProduct, deleteProduct } from './product.respository';
 import { Request, Response } from "express"
 import { validationResult } from 'express-validator';
+import Logger from '../../utils/logger';
 
 export const get = async (req: Request, res: Response) => {
     try {
@@ -23,9 +26,9 @@ export const getById = async (req: Request, res: Response) => {
         }
 
 
-        const { productId } = req.params;
+        const { id } = req.params;
 
-        const product = await getProductById(productId);
+        const product = await getProductById(id);
 
         res.status(200).json(product);
     } catch (error) {
@@ -45,8 +48,15 @@ export const create = async (req: Request, res: Response) => {
                 ...errors
             });
         }
+        
+        const priceWithProfice = await setPriceWithProfit(body.price, body.category);
+        
+        const iProduct: IProduct = {
+            ...priceWithProfice,
+            ...body
+        };
 
-        const product = await createProduct(body);
+        const product = await createProduct(iProduct);
 
         res.status(201).json(product);
     } catch (error) {
@@ -66,10 +76,18 @@ export const update = async (req: Request, res: Response) => {
         }
 
 
-        const { productId } = req.params;
+        const { id } = req.params;
         const data = req.body;
 
-        const product = await updateProduct(productId, data);
+        const priceWithProfit = await setPriceWithProfit(data.price, data.category);
+
+
+        const iProduct: IProduct = {
+            ...priceWithProfit,
+            ...data
+        };
+        Logger.info(iProduct);
+        const product = await updateProduct(id, iProduct);
 
         res.status(200).json(product);
     } catch (error) {
@@ -89,9 +107,9 @@ export const remove = async(req: Request, res: Response) => {
         }
 
 
-        const { productId } = req.params;
+        const { id } = req.params;
 
-        const product = await deleteProduct(productId);
+        const product = await deleteProduct(id);
 
         res.status(200).json(product);
     } catch (error) {

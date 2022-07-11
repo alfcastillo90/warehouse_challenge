@@ -6,6 +6,9 @@ export interface ICategory {
 
 export interface CategoryDocument extends mongoose.Document {
   name: string;
+  products: any[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface productModelInterface extends mongoose.Model<CategoryDocument> {
