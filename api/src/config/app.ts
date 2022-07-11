@@ -7,14 +7,16 @@ import listEndpoints from 'express-list-endpoints';
 import mongoose from 'mongoose';
 import environment from './environment';
 import { categoryRouter } from '../app/category/category.route';
+import { brandRouter } from '../app/brand/brand.route';
 
 class App {
     private readonly app: express.Application;
     private readonly port: string;
 
     private apiPaths = {
-        products: '/api/products',
-        categories: '/api/categories'
+        brands: 'api/brands',
+        categories: '/api/categories',
+        products: '/api/products'
     }
 
     constructor() {
@@ -42,6 +44,7 @@ class App {
     }
 
     routes() {
+        this.app.use(this.apiPaths.brands, brandRouter);
         this.app.use(this.apiPaths.categories, categoryRouter);
         this.app.use(this.apiPaths.products, productRouter);
         Logger.info(listEndpoints(this.app as any));
