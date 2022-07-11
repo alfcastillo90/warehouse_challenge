@@ -1,12 +1,11 @@
-import Logger from '../../utils/logger';
 import { getCategories, getCategoryById, createCategory } from './category.repository';
 import { Request, Response } from "express"
 import { validationResult } from 'express-validator';
 
 export const get = async (req: Request, res: Response) => {
     try {
-        const products = await getCategories();
-        res.status(200).json(products);
+        const categories = await getCategories();
+        res.status(200).json(categories);
     } catch (error) {
         res.status(400).json(error);
     }
@@ -24,11 +23,11 @@ export const getById = async (req: Request, res: Response) => {
         }
 
 
-        const { productId } = req.params;
+        const { categoryId } = req.params;
 
-        const product = await getCategoryById(productId);
+        const category = await getCategoryById(categoryId);
 
-        res.status(200).json(product);
+        res.status(200).json(category);
     } catch (error) {
         res.status(400).json(error);
     }
@@ -47,9 +46,9 @@ export const create = async (req: Request, res: Response) => {
             });
         }
 
-        const product = await createCategory(body);
+        const category = await createCategory(body);
 
-        res.status(201).json(product);
+        res.status(201).json(category);
     } catch (error) {
         return res.status(500).json(error);
     }

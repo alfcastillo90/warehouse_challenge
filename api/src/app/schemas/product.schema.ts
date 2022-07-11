@@ -4,6 +4,8 @@ export interface IProduct {
   name: string;
   sku: string;
   price: number;
+  currency: string,
+  attributes: Array<{key: string, value: string}>,
   brand: string;
   category: string;
 }
@@ -12,8 +14,12 @@ export interface ProductDocument extends mongoose.Document {
   name: string;
   sku: string;
   price: number;
+  currency: string,
+  attributes: Array<{key: string, value: string}>,
   brand: string;
   category: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface productModelInterface extends mongoose.Model<ProductDocument> {
