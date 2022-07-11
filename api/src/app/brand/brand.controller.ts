@@ -36,7 +36,6 @@ export const getById = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
     try {
-        console.log('init create category method')
         const body = req.body;
 
         const errors = validationResult(req);
