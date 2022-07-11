@@ -4,7 +4,7 @@ import { validationResult } from 'express-validator';
 
 export const get = async (req: Request, res: Response) => {
     try {
-        const products = await getProducts();
+        const products = await getProducts(req.query.name?.toString());
         res.status(200).json(products);
     } catch (error) {
         res.status(400).json(error);
