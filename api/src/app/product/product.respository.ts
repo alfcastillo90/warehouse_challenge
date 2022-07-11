@@ -1,3 +1,4 @@
+import Logger from "../../utils/logger";
 import { IProduct, Product, ProductDocument } from "../schemas/product.schema";
 
 export const createProduct = async (data: IProduct): Promise<ProductDocument>  => {
@@ -18,7 +19,7 @@ export const getProductById = async(productId: string): Promise<ProductDocument 
 }
 
 export const updateProduct = async(productId: string, data: IProduct): Promise<ProductDocument | null> => {
-    return await Product.findByIdAndUpdate(productId, data)
+    return await Product.findByIdAndUpdate(productId, data, { new: true });
 }
 
 export const deleteProduct = async(productId: string): Promise<ProductDocument | null> => {

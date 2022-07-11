@@ -11,8 +11,8 @@ router.get('/:id', param('id').isMongoId(), getById);
 
 router.post('/', createProductValidator, create);
 
-router.put('/', updateProductValidator, update);
+router.put('/:id', updateProductValidator, update);
 
-router.delete('/', param('id').isMongoId(), remove);
+router.delete('/:id', param('id').isMongoId(), remove);
 
 export { router as productRouter }

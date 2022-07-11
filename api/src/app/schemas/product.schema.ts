@@ -4,6 +4,10 @@ export interface IProduct {
   name: string;
   sku: string;
   price: number;
+  profit: number;
+  priceWithProfit: number;
+  currency: string,
+  attributes: Array<{key: string, value: string}>,
   brand: string;
   category: string;
 }
@@ -12,8 +16,14 @@ export interface ProductDocument extends mongoose.Document {
   name: string;
   sku: string;
   price: number;
+  profit: number;
+  priceWithProfit: number;
+  currency: string;
+  attributes: Array<{key: string, value: string}>;
   brand: string;
   category: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface productModelInterface extends mongoose.Model<ProductDocument> {
@@ -31,6 +41,14 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     price: {
+      type: Number,
+      required: true,
+    },
+    profit: {
+      type: Number,
+      required: true,
+    },
+    priceWithProfit: {
       type: Number,
       required: true,
     },

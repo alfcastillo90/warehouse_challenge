@@ -6,6 +6,9 @@ export interface IBrand {
 
 export interface BrandDocument extends mongoose.Document {
   name: string;
+  products: any[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface brandModelInterface extends mongoose.Model<BrandDocument> {
