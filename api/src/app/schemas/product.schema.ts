@@ -1,30 +1,60 @@
 import mongoose from "mongoose";
 
-const productSchema = new mongoose.Schema({
+export interface IProduct {
+  name: string;
+  sku: string;
+  price: number;
+  brand: string;
+  category: string;
+}
+
+export interface ProductDocument extends mongoose.Document {
+  name: string;
+  sku: string;
+  price: number;
+  brand: string;
+  category: string;
+}
+
+interface productModelInterface extends mongoose.Model<ProductDocument> {
+  build(attr: IProduct): ProductDocument;
+}
+
+const productSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     sku: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     price: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     brand: {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Brand'
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Brand",
     },
     category: {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Category'
-    }
-},{
-    timestamps:true
-});
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Product = mongoose.model('Product', productSchema);
+productSchema.statics.build = (attr: IProduct) => {
+  return new Product(attr);
+};
+
+const Product = mongoose.model<ProductDocument, productModelInterface>(
+  "Product",
+  productSchema
+);
 
 export { Product };
