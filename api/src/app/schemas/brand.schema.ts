@@ -25,14 +25,12 @@ const brandSchema = new mongoose.Schema(
   }
 );
 
-const Brand = mongoose.model("Brand", brandSchema);
-
 brandSchema.statics.build = (attr: IBrand) => {
-  return new Product(attr);
+  return new Brand(attr);
 };
 
-const Product = mongoose.model<BrandDocument, brandModelInterface>(
-  "Product",
+const Brand = mongoose.model<BrandDocument, brandModelInterface>(
+  "Brand",
   brandSchema
 );
 
