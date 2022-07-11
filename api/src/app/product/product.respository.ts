@@ -9,8 +9,9 @@ export const createProduct = async (data: IProduct): Promise<ProductDocument>  =
     return product;
 }
 
-export const getProducts = async(): Promise<ProductDocument[]> => {
-    return await Product.find({});
+export const getProducts = async(name: string | undefined): Promise<ProductDocument[]> => {
+    const filter = name != undefined ? { name: { $regex: name } } : {};
+    return await Product.find(filter);
 }
 
 
