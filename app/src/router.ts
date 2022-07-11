@@ -6,17 +6,17 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     alias: "/products",
     name: "products",
-    component: () => import("./components/ProductsList.vue"),
+    component: () => import("./components/products/products-list.vue"),
   },
   {
     path: "/products/:id",
     name: "product-details",
-    component: () => import("./components/ProductDetails.vue"),
+    component: () => import("./components/product-details/product-details.vue"),
   },
   {
     path: "/add",
     name: "add",
-    component: () => import("./components/AddProduct.vue"),
+    component: () => import("./components/create-product/create-product.vue"),
   },
 ];
 
