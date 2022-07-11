@@ -14,7 +14,7 @@ class App {
     private readonly port: string;
 
     private apiPaths = {
-        brands: 'api/brands',
+        brands: '/api/brands',
         categories: '/api/categories',
         products: '/api/products'
     }
