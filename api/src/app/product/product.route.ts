@@ -1,25 +1,16 @@
+import { get, create, update, remove, getById } from './product.controller';
 import express from 'express';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    return res.send('get products');
-})
+router.get('/',get);
 
-router.get('/:id', (req, res) => {
-    return res.send('get product by id');
-})
+router.get('/:id', getById);
 
-router.post('/', (req, res) => {
-    return res.send('create products');
-})
+router.post('/', create);
 
-router.put('/', (req, res) => {
-    return res.send('update products');
-})
+router.put('/', update);
 
-router.delete('/', (req, res) => {
-    return res.send('delete products');
-});
+router.delete('/', remove);
 
 export { router as productRouter }
