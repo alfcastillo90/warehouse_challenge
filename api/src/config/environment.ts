@@ -2,7 +2,7 @@ require('dotenv').config();
 
 export = {
     port: process.env.PORT,
-    databaseName: process.env.DATABASE_NAME,
+    mongoUrl: process.env.MONGODB_URL as string,
     nodeEnv: process.env.NODE_ENV
 }
 

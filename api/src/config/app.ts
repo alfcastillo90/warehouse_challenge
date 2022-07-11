@@ -4,7 +4,8 @@ import "reflect-metadata";
 import Logger from '../utils/logger';
 import { productRouter } from '../app/product/product.route';
 import listEndpoints from 'express-list-endpoints';
-
+import mongoose from 'mongoose';
+import environment from './environment';
 
 class App {
     private readonly app: express.Application;
@@ -17,6 +18,14 @@ class App {
     constructor() {
         this.app = express();
         this.port = process.env.PORT || '3000';
+
+        mongoose.connect(`${environment.mongoUrl}`).then(() => {
+            Logger.info('database connected');
+            this.middlewares();
+            this.routes()  
+        }).catch(err => {
+            Logger.error(err)
+        }); 
     }
 
     listen() {
