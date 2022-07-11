@@ -34,6 +34,14 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    attributes: {
+      type: Array,
+      required: true
+    },
+    currency: {
+      type: String,
+      required: true
+    },
     brand: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Brand",

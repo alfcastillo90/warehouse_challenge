@@ -1,16 +1,18 @@
 import { get, create, update, remove, getById } from './product.controller';
 import express from 'express';
+import { createProductValidator, updateProductValidator } from './product.validator';
+import { param } from 'express-validator';
 
 const router = express.Router();
 
 router.get('/',get);
 
-router.get('/:id', getById);
+router.get('/:id', param('id').isMongoId(), getById);
 
-router.post('/', create);
+router.post('/', createProductValidator, create);
 
-router.put('/', update);
+router.put('/', updateProductValidator, update);
 
-router.delete('/', remove);
+router.delete('/', param('id').isMongoId(), remove);
 
 export { router as productRouter }
