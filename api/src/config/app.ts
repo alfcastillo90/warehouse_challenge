@@ -6,13 +6,15 @@ import { productRouter } from '../app/product/product.route';
 import listEndpoints from 'express-list-endpoints';
 import mongoose from 'mongoose';
 import environment from './environment';
+import { categoryRouter } from '../app/category/category.route';
 
 class App {
     private readonly app: express.Application;
     private readonly port: string;
 
     private apiPaths = {
-        products: '/api/products'
+        products: '/api/products',
+        categories: '/api/categories'
     }
 
     constructor() {
@@ -22,7 +24,7 @@ class App {
         mongoose.connect(`${environment.mongoUrl}`).then(() => {
             Logger.info('database connected');
             this.middlewares();
-            this.routes()  
+            this.routes();
         }).catch(err => {
             Logger.error(err)
         }); 
@@ -40,6 +42,7 @@ class App {
     }
 
     routes() {
+        this.app.use(this.apiPaths.categories, categoryRouter);
         this.app.use(this.apiPaths.products, productRouter);
         Logger.info(listEndpoints(this.app as any));
     }
