@@ -8,7 +8,7 @@ export const createCategory = async (data: ICategory): Promise<CategoryDocument>
     return category;
 }
 
-export const getCategorys = async(): Promise<CategoryDocument[]> => {
+export const getCategories = async(): Promise<CategoryDocument[]> => {
     return await Category.find({});
 }
 
