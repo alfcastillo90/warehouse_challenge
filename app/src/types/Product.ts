@@ -8,7 +8,9 @@ export default interface Product {
     currency: string;
     attributes: Array<{key: string, value: string}>;
     brand: string;
+    brandId: string;
     category: string;
+    categoryId: string;
     createdAt?: string;
     updatedAt?: string;
 }

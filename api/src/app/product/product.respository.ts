@@ -11,7 +11,7 @@ export const createProduct = async (data: IProduct): Promise<ProductDocument>  =
 
 export const getProducts = async(name: string | undefined): Promise<ProductDocument[]> => {
     const filter = name != undefined ? { name: { $regex: name } } : {};
-    return await Product.find(filter);
+    return await Product.find(filter).populate('category').populate('brand');
 }
 
 

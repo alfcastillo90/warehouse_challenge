@@ -1,3 +1,5 @@
+import { BrandDocument } from './brand.schema';
+import { CategoryDocument } from './category.schema';
 import mongoose from "mongoose";
 
 export interface IProduct {
@@ -20,8 +22,8 @@ export interface ProductDocument extends mongoose.Document {
   priceWithProfit: number;
   currency: string;
   attributes: Array<{key: string, value: string}>;
-  brand: string;
-  category: string;
+  brand: BrandDocument;
+  category: CategoryDocument;
   createdAt: string;
   updatedAt: string;
 }

@@ -22,14 +22,20 @@
                 <input class="form-control" id="currency" required v-model="currentProduct.currency" name="currency" />
             </div>
 
-            <div class="form-group">
+            <div>
                 <label for="brand">Brand</label>
-                <input class="form-control" id="brand" required v-model="currentProduct.brand" name="brand" />
+                <select class="form-control" v-model="currentProduct.brandId" id="brand" name="brand">
+                    <option :key="item.id" :value="item.id" v-for="(item) in optionsForBrands">{{ item.name }}
+                    </option>
+                </select>
             </div>
 
-            <div class="form-group">
+            <div>
                 <label for="category">Category</label>
-                <input class="form-control" id="category" required v-model="currentProduct.category" name="category" />
+                <select class="form-control" v-model="currentProduct.categoryId" id="category" name="category">
+                    <option :key="item.id" :value="item.id" v-for="(item) in optionsForCategories">{{ item.name }}
+                    </option>
+                </select>
             </div>
         </form>
         <button class="badge badge-primary mr-2" @click="updatePublished(true)">

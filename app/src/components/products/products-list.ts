@@ -10,7 +10,7 @@ export default defineComponent({
       products: [] as Product[],
       currentProduct: {} as Product,
       currentIndex: -1,
-      title: "",
+      name: "",
     };
   },
   methods: {
@@ -36,19 +36,8 @@ export default defineComponent({
       this.currentIndex = index;
     },
 
-    removeAllProducts() {
-      ProductService.deleteAll()
-        .then((response: ResponseData) => {
-          console.log(response.data);
-          this.refreshList();
-        })
-        .catch((e: Error) => {
-          console.log(e);
-        });
-    },
-
     searchTitle() {
-      ProductService.findByNane(this.title)
+      ProductService.findByNane(this.name)
         .then((response: ResponseData) => {
           this.products = response.data;
           this.setActiveProduct({} as Product);

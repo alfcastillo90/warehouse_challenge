@@ -3,6 +3,8 @@ import { defineComponent } from "vue";
 import ResponseData from "@/types/ResponseData";
 import productService from "@/services/product.service";
 import Product from "@/types/Product";
+import brandService from "@/services/brand.service";
+import categoryService from "@/services/category.service";
 
 export default defineComponent({
   name: "product",
@@ -10,6 +12,8 @@ export default defineComponent({
     return {
       currentProduct: {} as Product,
       message: "",
+      optionsForBrands: Array<{id: string, name: string}>(),
+      optionsForCategories: Array<{id: string, name: string}>()
     };
   },
   methods: {
@@ -64,6 +68,22 @@ export default defineComponent({
         .catch((e: Error) => {
           console.log(e);
         });
+    },
+
+    getBrands() {
+      brandService.getAll().then((response: ResponseData) => {
+        response.data.forEach((item: {_id: string, name: string}) => {
+          this.optionsForBrands.push({ id: item._id, name: item.name });
+        });
+      });
+    },
+
+    getCategories() {
+      categoryService.getAll().then((response: ResponseData) => {
+        response.data.forEach((item: {_id: string, name: string}) => {
+          this.optionsForCategories.push({ id: item._id, name: item.name });
+        });
+      });
     },
   },
   mounted() {

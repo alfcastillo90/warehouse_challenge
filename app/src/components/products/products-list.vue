@@ -2,7 +2,7 @@
   <div class="list row">
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by name" v-model="title" />
+        <input type="text" class="form-control" placeholder="Search by name" v-model="name" />
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" @click="searchTitle">
             Search
@@ -18,38 +18,54 @@
           {{ product.name }}
         </li>
       </ul>
-
-      <button class="m-3 btn btn-sm btn-danger" @click="removeAllProducts">
-        Remove All
-      </button>
     </div>
     <div class="col-md-6">
       <div v-if="currentProduct._id">
         <h4>Product</h4>
-        <div>
-          <label><strong>Name:</strong></label> {{ currentProduct.name }}
-        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <label><strong>Name:</strong></label> {{ currentProduct.name }}
+          </li>
 
-        <div>
-          <label><strong>SKU:</strong></label>
-          {{ currentProduct.sku }}
-        </div>
+          <li class="list-group-item">
+            <label><strong>SKU:</strong></label>
+            {{ currentProduct.sku }}
+          </li>
 
-        <div>
-          <label><strong>Price:</strong></label>
-          {{ currentProduct.price }}
-        </div>
+          <li class="list-group-item">
+            <label><strong>Price:</strong></label>
+            {{ currentProduct.price }}
+          </li>
 
-        <div>
-          <label><strong>Profit:</strong></label>
-          {{ currentProduct.profit }}
-        </div>
+          <li class="list-group-item">
+            <label><strong>Profit:</strong></label>
+            {{ currentProduct.profit }}
+          </li>
 
-        <div>
-          <label><strong>Price with profit:</strong></label>
-          {{ currentProduct.priceWithProfit }}
-        </div>
+          <li class="list-group-item">
+            <label><strong>Price with profit:</strong></label>
+            {{ currentProduct.priceWithProfit }}
+          </li>
 
+          <li class="list-group-item">
+            <label><strong>Brand:</strong></label>
+            {{ currentProduct.brand }}
+          </li>
+
+          <li class="list-group-item">
+            <label><strong>Category:</strong></label>
+            {{ currentProduct.category }}
+          </li>
+
+          <li class="list-group-item">
+            <label><strong>Attributes:</strong></label>
+            <ul class="list-group">
+              <li class="list-group-item" v-for="(attribute, index) in currentProduct.attributes" :key="index">
+                <b>{{ attribute.key }}</b>: {{ attribute.value }}
+              </li>
+            </ul>
+          </li>
+        </ul>
         <router-link :to="'/products/' + currentProduct._id" class="badge badge-warning">Edit</router-link>
       </div>
       <div v-else>
