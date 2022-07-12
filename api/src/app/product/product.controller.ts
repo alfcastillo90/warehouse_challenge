@@ -1,13 +1,13 @@
 import { IProduct } from './../schemas/product.schema';
-import { setPriceWithProfit } from './product.service';
-import { createProduct, getProducts, getProductById, updateProduct, deleteProduct } from './product.respository';
+import { setPriceWithProfit, getProducts as getProductsService, getProductById } from './product.service';
+import { createProduct, updateProduct, deleteProduct } from './product.respository';
 import { Request, Response } from "express"
 import { validationResult } from 'express-validator';
 import Logger from '../../utils/logger';
 
 export const get = async (req: Request, res: Response) => {
     try {
-        const products = await getProducts(req.query.name?.toString());
+        const products = await getProductsService(req.query.name?.toString());
         res.status(200).json(products);
     } catch (error) {
         res.status(400).json(error);

@@ -11,23 +11,19 @@ class ProductService {
   }
 
   create(data: any): Promise<any> {
-    return http.post("/Product", data);
+    return http.post(`/products`, data);
   }
 
   update(id: any, data: any): Promise<any> {
-    return http.put(`/Product/${id}`, data);
+    return http.put(`/products/${id}`, data);
   }
 
   delete(id: any): Promise<any> {
-    return http.delete(`/Product/${id}`);
-  }
-
-  deleteAll(): Promise<any> {
-    return http.delete(`/Product`);
+    return http.delete(`/products/${id}`);
   }
 
   findByNane(name: string): Promise<any> {
-    return http.get(`/Product?name=${name}`);
+    return http.get(`/products?name=${name}`);
   }
 }
 
