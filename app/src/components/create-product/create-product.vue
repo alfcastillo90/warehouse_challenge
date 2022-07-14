@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid">
+    <h4>Create product</h4>
     <div v-if="!submitted" class="row">
       <div class="col">
         <div class="form-group">

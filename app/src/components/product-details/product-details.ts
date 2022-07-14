@@ -28,31 +28,21 @@ export default defineComponent({
         });
     },
 
-    updatePublished(status: boolean) {
+    updateProduct() {
       const data = {
         name: this.currentProduct.name,
         sku: this.currentProduct.sku,
         price: this.currentProduct.price,
         currency: this.currentProduct.currency,
-        brand: this.currentProduct.brand,
-        category: this.currentProduct.category,
+        brand: this.currentProduct.brandId,
+        category: this.currentProduct.categoryId,
+        attributes: this.currentProduct.attributes
       };
 
       productService.update(this.currentProduct._id, data)
         .then((response: ResponseData) => {
           console.log(response.data);
-          this.message = "The status was updated successfully!";
-        })
-        .catch((e: Error) => {
-          console.log(e);
-        });
-    },
-
-    updateProduct() {
-      productService.update(this.currentProduct._id, this.currentProduct)
-        .then((response: ResponseData) => {
-          console.log(response.data);
-          this.message = "The tutorial was updated successfully!";
+          alert("The product was updated successfully!");
         })
         .catch((e: Error) => {
           console.log(e);
@@ -86,6 +76,7 @@ export default defineComponent({
       });
     },
   },
+
   mounted() {
     this.message = "";
     this.getCategories();

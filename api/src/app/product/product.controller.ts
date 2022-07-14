@@ -80,7 +80,7 @@ export const update = async (req: Request, res: Response) => {
         const data = req.body;
 
         const priceWithProfit = await setPriceWithProfit(data.price, data.category);
-
+        Logger.info(priceWithProfit);
 
         const iProduct: IProduct = {
             ...priceWithProfit,

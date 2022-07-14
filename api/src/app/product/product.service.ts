@@ -3,9 +3,9 @@ import { getCategoryById } from '../category/category.repository';
 import Logger from '../../utils/logger';
 
 enum categories {
-    TV = 'TELEVISORES',
-    SHOES = 'ZAPATOS',
-    LAPTOPS = 'LAPTOPS'
+    TV = 'TV',
+    SHOES = 'SHOES',
+    LAPTOPS = 'COMPUTERS'
 }
 
 export interface PriceAndProfit {
@@ -79,8 +79,10 @@ export const getProducts = async(name: string | undefined) => {
 }
 
 export const setPriceWithProfit = async(price: number, categoryId: string): Promise<PriceAndProfit> => {
+    console.log(`category id ${categoryId}`);
+
     const category = await getCategoryById(categoryId);
-    Logger.info(category);
+    console.log(category)
     let priceWithProfit = 0;
     let profit = 0;
 

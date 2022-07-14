@@ -96,8 +96,8 @@ export default defineComponent({
         sku: this.product.sku,
         price: this.product.price,
         currency: this.product.currency,
-        brand: this.product.brand,
-        category: this.product.category,
+        brand: this.product.brandId,
+        category: this.product.categoryId,
         attributes
       };
 
