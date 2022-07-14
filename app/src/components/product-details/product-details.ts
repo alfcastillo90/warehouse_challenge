@@ -88,6 +88,9 @@ export default defineComponent({
   },
   mounted() {
     this.message = "";
+    this.getCategories();
+    this.getBrands();
     this.getProduct(this.$route.params.id);
+    
   },
 });

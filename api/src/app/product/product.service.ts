@@ -46,7 +46,7 @@ export const getProductById = async(productId: string) => {
             category: product.category.name,
             categoryId: product.category._id,
             brand: product.brand.name,
-            brandId: product.brand.id,
+            brandId: product.brand._id,
             createdAt: product.createdAt,
             updatedAt: product.updatedAt
         };
