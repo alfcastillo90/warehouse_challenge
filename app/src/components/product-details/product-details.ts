@@ -28,31 +28,22 @@ export default defineComponent({
         });
     },
 
-    updatePublished(status: boolean) {
+    updateProduct() {
       const data = {
         name: this.currentProduct.name,
         sku: this.currentProduct.sku,
         price: this.currentProduct.price,
         currency: this.currentProduct.currency,
-        brand: this.currentProduct.brand,
-        category: this.currentProduct.category,
+        brand: this.currentProduct.brandId,
+        category: this.currentProduct.categoryId,
+        attributes: this.currentProduct.attributes
       };
 
       productService.update(this.currentProduct._id, data)
         .then((response: ResponseData) => {
-          console.log(response.data);
-          this.message = "The status was updated successfully!";
-        })
-        .catch((e: Error) => {
-          console.log(e);
-        });
-    },
+          alert("The product was updated successfully!");
+          this.$router.push({ name: "products" });
 
-    updateProduct() {
-      productService.update(this.currentProduct._id, this.currentProduct)
-        .then((response: ResponseData) => {
-          console.log(response.data);
-          this.message = "The tutorial was updated successfully!";
         })
         .catch((e: Error) => {
           console.log(e);
@@ -60,14 +51,16 @@ export default defineComponent({
     },
 
     deleteProduct() {
-      productService.delete(this.currentProduct._id)
+      if(window.confirm('Are you sure?')) {
+        productService.delete(this.currentProduct._id)
         .then((response: ResponseData) => {
           console.log(response.data);
-          this.$router.push({ name: "tutorials" });
+          this.$router.push({ name: "products" });
         })
         .catch((e: Error) => {
           console.log(e);
         });
+      }
     },
 
     getBrands() {
@@ -86,8 +79,12 @@ export default defineComponent({
       });
     },
   },
+
   mounted() {
     this.message = "";
+    this.getCategories();
+    this.getBrands();
     this.getProduct(this.$route.params.id);
+    
   },
 });

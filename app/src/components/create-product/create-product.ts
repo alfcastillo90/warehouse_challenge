@@ -96,8 +96,8 @@ export default defineComponent({
         sku: this.product.sku,
         price: this.product.price,
         currency: this.product.currency,
-        brand: this.product.brand,
-        category: this.product.category,
+        brand: this.product.brandId,
+        category: this.product.categoryId,
         attributes
       };
 
@@ -105,7 +105,8 @@ export default defineComponent({
         .create(data)
         .then((response: ResponseData) => {
           this.product._id = response.data._id;
-          this.submitted = true;
+          alert('The product was registered sucessfully');
+          this.$router.push({ name: "products" });
         })
         .catch((e: Error) => {
           console.log(e);

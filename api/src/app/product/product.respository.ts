@@ -16,7 +16,7 @@ export const getProducts = async(name: string | undefined): Promise<ProductDocum
 
 
 export const getProductById = async(productId: string): Promise<ProductDocument | null> => {
-    return await Product.findById(productId);
+    return await Product.findById(productId).populate('category').populate('brand');;
 }
 
 export const updateProduct = async(productId: string, data: IProduct): Promise<ProductDocument | null> => {
