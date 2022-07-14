@@ -53,7 +53,8 @@
             <option value="USD">US Dollar</option>
           </select>
         </div>
-
+      </div>
+      <div class="col">
         <div>
           <label for="brand">Brand</label>
           <select
@@ -91,9 +92,6 @@
           </select>
         </div>
 
-        <button @click="saveProduct" class="btn btn-success">Submit</button>
-      </div>
-      <div class="col">
         <div v-if="categorySelected == 'TV'">
           <div>
             <label for="brand">Type</label>
@@ -168,6 +166,7 @@
             />
           </div>
         </div>
+        <button @click="saveProduct" class="btn btn-success">Submit</button>
       </div>
     </div>
 

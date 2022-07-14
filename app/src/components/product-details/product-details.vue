@@ -55,6 +55,31 @@
         </div>
       </div>
       <div class="col">
+        <div class="form-group">
+          <label for="profit">Profit</label>
+          <input
+            class="form-control"
+            id="profit"
+            required
+            v-model="currentProduct.profit"
+            name="profit"
+            type="number"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="priceWithProfit">Price with profit</label>
+          <input
+            class="form-control"
+            id="priceWithProfit"
+            required
+            v-model="currentProduct.priceWithProfit"
+            name="priceWithProfit"
+            type="number"
+            disabled
+          />
+        </div>
         <div>
           <label for="brand">Brand</label>
           <select

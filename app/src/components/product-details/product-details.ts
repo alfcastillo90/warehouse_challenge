@@ -41,8 +41,9 @@ export default defineComponent({
 
       productService.update(this.currentProduct._id, data)
         .then((response: ResponseData) => {
-          console.log(response.data);
           alert("The product was updated successfully!");
+          this.$router.push({ name: "products" });
+
         })
         .catch((e: Error) => {
           console.log(e);
@@ -50,14 +51,16 @@ export default defineComponent({
     },
 
     deleteProduct() {
-      productService.delete(this.currentProduct._id)
+      if(window.confirm('Are you sure?')) {
+        productService.delete(this.currentProduct._id)
         .then((response: ResponseData) => {
           console.log(response.data);
-          this.$router.push({ name: "tutorials" });
+          this.$router.push({ name: "products" });
         })
         .catch((e: Error) => {
           console.log(e);
         });
+      }
     },
 
     getBrands() {
